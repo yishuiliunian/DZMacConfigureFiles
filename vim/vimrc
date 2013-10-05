@@ -1,0 +1,50 @@
+source .vimrc.vundle
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
+let g:airline_theme="tomorrow"
+
+
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+  function! AirlineThemePatch(palette)
+    if g:airline_theme == 'badwolf'
+      for colors in values(a:palette.inactive)
+        let colors[3] = 245
+      endfor
+    endif
+  endfunction
+
+"super tab file not sorted error
+:set ignorecase
+"通用配置
+set shortmess=atI
+set nu
+autocmd InsertLeave * se nocul
+autocmd InsertEnter * se cul
+set showcmd
+set foldenable
+set foldmethod=manual
+set nocompatible
+if version >= 603
+    set helplang=cn
+    set encoding=utf-8
+endif
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
+set fileencoding=utf-8
+set autoread
+autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
+set completeopt=preview,menu
+set clipboard+=unnamed 
+set makeprg=g++\ -Wall\ \ %
+set magic  
+set autoindent
+set cindent
+set tabstop=4
+" 统一缩进为4
+set softtabstop=4
+set shiftwidth=4
+set smartindent
